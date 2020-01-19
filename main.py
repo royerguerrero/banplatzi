@@ -1,9 +1,18 @@
+from collections import deque
+
+# Cola para depositos
+deposit_queue = deque([])
+
+# Cola para apertura de cuentas
+
+account_opening_queue = deque([])
+
+
 clients = [
     {
         name: 'Andres Garcia',
         identification: '5328373',
         account_number: '032451453'
-        
     }
     {
         name : 'Royer Guerrero'
@@ -19,23 +28,28 @@ def _get_input(placeholder, syntax = 'el'):
     return data
 
 def _get_all_client_schema():
-    pass
+    client = {}
+    client['name'] = _get_input('nombre')
+    client['']
 
 
 #Función de agregar cliente a fila de depósito
-def add_client(command):
+def add_client():
+    pass
+
+def delete_client()
     pass
 
 #Función de agregar cliente a fila de apertura de cuenta
-def agregar_apertura_cuenta(command):
+def move_client_account_opening():
     pass
 
 #Función de atender cliente
-def atender_cliente(command):
+def attend_client():
     pass
 
 #Función de listar clientes en fila
-def listar_clientes(command):
+def list_clients():
     pass
 
 def run():
