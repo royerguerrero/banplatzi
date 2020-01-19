@@ -1,0 +1,13 @@
+news_sites:
+  portafolio:
+    url: https://www.portafolio.co/
+    queries:
+      homepage_article_links: '.page-link'
+      article_body: '.parrafo'
+      article_title: '.title'
+  cnn:
+    url: https://cnnespanol.cnn.com/
+    queries:
+      homepage_article_links: '.news__title a'
+      article_body: '.storyfull__body p'
+      article_title: '.storyfull__title'
