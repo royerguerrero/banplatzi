@@ -43,18 +43,18 @@ class Clients:
 
     def _print_client(self, client):
             print(' --- ' * 10)
-            print(f'Account Number: {client.account_number} >> Client Name: {client.name} | Client Identificacion: {client.identification} | Client Number Phone: {client.number_phone} | Client Email: {client.email}')
+            print(f'Account Number: {client.account_number} >> Client Name: {client.name} | Client Identificacion: {client.identification} | Client Balance: {client.balance} | Client Number Phone: {client.number_phone} | Client Email: {client.email}')
             print(' --- ' * 10)
 
 
     def search(self, account_number):
         for client in self._clients:
             if client.account_number == account_number:
-                self._print_client(client)  
+                #self._print_client(client)  
                 return client
         
         else:
-            print(f'The client with account number {account_number} are not found')
+            return False
 
 
     def delete(self, account_number):

@@ -7,8 +7,8 @@ deposit_queue = deque([])
 # Cola para apertura de cuentas - Se guardaran los number account unicamente
 account_opening_queue = deque([])
 
-def add_to_deposit_queue():
-    pass
+def add_to_deposit_queue(number_account):
+    deposit_queue.append(number_account)
 
 def add_to_opening_account_queue(name, identification):
     account_opening_queue.append({'name' : name ,'identification' : identification})
@@ -18,6 +18,7 @@ def serve_client():
 
 def list_clients_queues():
     print("Fila de Deposito")
+    print(account_opening_queue)
     print("Fila de Apertura de Cuenta")
     print(account_opening_queue)
 
@@ -30,6 +31,10 @@ def _get_input_data(field):
     return data
 
 def run():
+
+    clients = Clients()
+    clients._load_clients()
+
     while True:
         command = str(input('''
         Bienvenido, a BanPlatzi tu app de gestion de filas de tu banco
@@ -42,7 +47,13 @@ def run():
         ''')).lower()
     
         if command == 'a':
-            pass
+            number_account = _get_input_data('numero de cuenta')
+            found = clients.search(number_account)
+            if found:
+                add_to_deposit_queue(number_account)
+            else:
+                print(f'EL cliente con numero de cuenta {number_account} no fue encontrado')
+
         elif command == 'b':
             name = _get_input_data('nombre')
             identification = _get_input_data('identificacion')
