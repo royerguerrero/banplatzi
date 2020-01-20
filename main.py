@@ -16,10 +16,6 @@ def add_to_opening_account_queue(name, identification):
     account_opening_queue.append({'name' : name ,'identification' : identification})
 
 
-def serve_client():
-    pass
-
-
 def list_clients_queues():
     print("Fila de Deposito")
     for idx, client in enumerate(deposit_queue):
