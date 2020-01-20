@@ -1,3 +1,6 @@
+import csv
+import os
+
 class Client:
 
     def __init__(self, name, identification, account_number, number_phone, email, balance):
@@ -12,9 +15,26 @@ class ClientBook:
 
     def __init__(self):
         self._clients = []
+        self.CLIENT_FILE = '.clients.csv'
+
+    def _save_clients(self):
+        with open(self.CLIENT_FILE, mode='w', newline='') as f:
+            writer = csv.writer(f)
+            
+            for client in self._clients:
+                writer.writerow( (client.name, client.identification, client.account_number, client.number_phone, client.email, client.balance) )
+
+    def _load_clients(self):
+        with open(self.CLIENT_FILE, mode='r') as f:
+            reader = csv.reader(f)
+            for idx, row in enumerate(reader):
+                if idx == 0:
+                    continue
+
+                self.add(row[0], row[1], row[2], row[3], row[4], row[5])
 
     def add(self, name, identification, account_number, number_phone, email, balance = 0):
-        client = Client(name, identification, account_number, number_phone, email, balance)
+        client = Client(name, identification, account_number, number_phone, email, int(balance))
         self._clients.append(client)
 
     def show_all(self):
@@ -64,21 +84,3 @@ class ClientBook:
         else:
             print('Underfunding')
         
-
-
-book = ClientBook()
-book.add('Jon', '123', '000', '854278945', 'jfdask@jidfkal')
-book.add('Cristian', '456', '159', '854278945', 'jfdask@jidfkal')
-book.add('Royer', '798', '753', '854278945', 'jfdask@jidfkal')
-book.add('Juan', '014', '486', '854278945', 'jfdask@jidfkal')
-book.add('Andres', '025', '777', '854278945', 'jfdask@jidfkal')
-
-book.show_all()
-
-client = book.search('000')
-
-book.deposit(client, 1000)
-
-book.withdraw(client, 100)
-
-book.show_all()
