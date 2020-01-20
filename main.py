@@ -33,7 +33,7 @@ def _get_input_data(field):
     data = None
 
     while not data:
-        data = input(f'¿Cual es el {field}?: ')
+        data = input(f'Cual es el {field} ')
 
     return data
 
@@ -70,7 +70,39 @@ def run():
             identification = _get_input_data('identificacion de cliente')
             add_to_opening_account_queue(name, identification)
         elif command == 'c':
-            pass
+            queue = input('''
+            Elije que fila deseas atender :
+            [A] Fila de Depositos
+            [B] Fila de Apertura de Cuenta
+            ''').lower()
+
+            print('Siguiente Cliente...')
+            if queue == 'a':
+                try:
+                    print('Cliente a atender >> Nombre del depositante: {} - Identificado con C.C N° {} | Numero de cuenta a depositar: {}'.format(deposit_queue[0]['depositor_name'], deposit_queue[0]['depositor_uid'], deposit_queue[0]['number_account']))
+                    value = _get_input_data('monto a consignar, no incluyas puntos ni comas - $ ')
+                    client = clients.search(deposit_queue[0]['number_account'])
+
+                    clients.deposit(client, value)
+                    deposit_queue.popleft()
+
+                except IndexError:
+                    print('La fila de Depositos no tiene clientes')
+
+            elif queue == 'b':
+                try:
+                    print('Cliente a atender >> Nombre del futuro cliente: {} - Identificado con C.C N° {}'.format(account_opening_queue[0]['name'], account_opening_queue[0]['identification']))
+
+                    account_number = _get_input_data('numero de cuenta: ')
+                    number_phone = _get_input_data('numero de telefono del cliente: ')
+                    email = _get_input_data('email del cliente: ')
+
+                    clients.add(account_opening_queue[0]['name'], account_opening_queue[0]['identification'], account_number, number_phone, email)
+                    account_opening_queue.popleft()
+                except IndexError:
+                    print('La fila de Apertura de clientes no tiene clientes')
+
+
         elif command == 'd':
             list_clients_queues()
         elif command == 's':

@@ -35,6 +35,7 @@ class Clients:
     def add(self, name, identification, account_number, number_phone, email, balance = 0):
         client = Client(name, identification, account_number, number_phone, email, int(balance))
         self._clients.append(client)
+        self._save_clients()
 
     def show_all(self):
         for client in self._clients:
@@ -63,7 +64,6 @@ class Clients:
 
     
     def update(self, client, name, identification, account_number, number_phone, email):
-
         client.name = name
         client.identification = identification
         client.account_number = account_number
@@ -73,6 +73,7 @@ class Clients:
 
     def deposit(self, client, value):
         client.balance += int(value)
+        self._save_clients()
 
     def withdraw(self, client, value):
         
