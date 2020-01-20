@@ -4,33 +4,42 @@ from collections import deque
 deposit_queue = deque([])
 
 # Cola para apertura de cuentas
-
 account_opening_queue = deque([])
 
 
 clients = [
     {
-        name: 'Andres Garcia',
-        identification: '5328373',
-        account_number: '032451453'
-    }
+        'name': 'Andres Garcia',
+        'identification': '5328373',
+        'account_number': '032451453',
+        'number_phone': '312 548 1324',
+        'email': 'andres@mail.com'
+    },
     {
-        name : 'Royer Guerrero'
-        identification : '12359812',
-        account_number: '153020'
+        'name' : 'Royer Guerrero'
+        'identification' : '12359812',
+        'account_number' : '153020',
+        'number_phone' : '314 863 6530',
+        'email' : 'royerg@hmail.com'
     }
 ]
 
 # El parametro por defecto es el, por si se desea preguntar un valor que sea 'la' se le debe pasar a la funcion
 def _get_input(placeholder, syntax = 'el'):
+    data = None
 
-    data = input(f'Cual es {syntax} {placeholder}: ')
+    while not data:
+        data = input(f'Cual es {syntax} {placeholder}: ')
+    
     return data
 
 def _get_all_client_schema():
     client = {}
     client['name'] = _get_input('nombre')
-    client['']
+    client['identification'] = _get_input('numero de identificacion')
+    client['account_number'] = _get_input('numero de cuenta')
+    client['number_phone'] = _get_input('numero de identificacion')
+    client['email'] = _get_input('correo electronico')
 
 
 #Función de agregar cliente a fila de depósito
