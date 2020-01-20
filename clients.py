@@ -1,5 +1,4 @@
 import csv
-import os
 
 class Client:
 
@@ -11,7 +10,7 @@ class Client:
         self.email = email
         self.balance = balance
 
-class ClientBook:
+class Clients:
 
     def __init__(self):
         self._clients = []

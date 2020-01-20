@@ -1,65 +1,23 @@
 from collections import deque
+from clients import Clients
 
 # Cola para depositos
 deposit_queue = deque([])
-
 # Cola para apertura de cuentas
 account_opening_queue = deque([])
 
-
-clients = [
-    {
-        'name': 'Andres Garcia',
-        'identification': '5328373',
-        'account_number': '032451453',
-        'number_phone': '312 548 1324',
-        'email': 'andres@mail.com'
-    },
-    {
-        'name' : 'Royer Guerrero'
-        'identification' : '12359812',
-        'account_number' : '153020',
-        'number_phone' : '314 863 6530',
-        'email' : 'royerg@hmail.com'
-    }
-]
-
-# El parametro por defecto es el, por si se desea preguntar un valor que sea 'la' se le debe pasar a la funcion
-def _get_input(placeholder, syntax = 'el'):
-    data = None
-
-    while not data:
-        data = input(f'Cual es {syntax} {placeholder}: ')
-    
-    return data
-
-def _get_all_client_schema():
-    client = {}
-    client['name'] = _get_input('nombre')
-    client['identification'] = _get_input('numero de identificacion')
-    client['account_number'] = _get_input('numero de cuenta')
-    client['number_phone'] = _get_input('numero de identificacion')
-    client['email'] = _get_input('correo electronico')
-
-
-#Función de agregar cliente a fila de depósito
-def add_client():
+def add_to_deposit_queue():
     pass
 
-def delete_client()
+def add_to_opening_account_queue():
     pass
 
-#Función de agregar cliente a fila de apertura de cuenta
-def move_client_account_opening():
+def serve_client():
     pass
 
-#Función de atender cliente
-def attend_client():
+def list_clients_queues():
     pass
 
-#Función de listar clientes en fila
-def list_clients():
-    pass
 
 def run():
     while True:
@@ -90,7 +48,7 @@ __________              __________.__          __         .__
     command = run()
 
     if command == 'a':
-        
+        pass
     elif command == 'b':
         pass
     elif command == 'c':
