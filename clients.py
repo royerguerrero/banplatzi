@@ -24,12 +24,9 @@ class Clients:
                 writer.writerow( (client.name, client.identification, client.account_number, client.number_phone, client.email, client.balance) )
 
     def _load_clients(self):
-        with open(self.CLIENT_FILE, mode='r') as f:
+        with open(self.CLIENT_FILE, mode='r', newline='') as f:
             reader = csv.reader(f)
-            for idx, row in enumerate(reader):
-                if idx == 0:
-                    continue
-
+            for row in reader:
                 self.add(row[0], row[1], row[2], row[3], row[4], row[5])
 
     def add(self, name, identification, account_number, number_phone, email, balance = 0):
