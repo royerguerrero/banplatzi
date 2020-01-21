@@ -1,4 +1,5 @@
 import csv
+import random
 
 class Client:
 
@@ -27,9 +28,25 @@ class Clients:
         with open(self.CLIENT_FILE, mode='r', newline='') as f:
             reader = csv.reader(f)
             for row in reader:
-                self.add(row[0], row[1], row[2], row[3], row[4], row[5])
+                self._add_with_account_number(row[0], row[1], row[2], row[3], row[4], row[5])
 
-    def add(self, name, identification, account_number, number_phone, email, balance = 0):
+    def _generate_account_number(self):
+        account_number = random.randint(11111, 99999)
+
+        validate_existence = self.search(account_number)
+
+        if not validate_existence:
+            return account_number
+        else:
+            self._generate_account_number()
+
+    def _add_with_account_number(self, name, identification, account_number, number_phone, email, balance = 0):
+        client = Client(name, identification, account_number, number_phone, email, int(balance))
+        self._clients.append(client)
+        self._save_clients()
+
+    def add(self, name, identification, number_phone, email, balance = 0):
+        account_number = self._generate_account_number()
         client = Client(name, identification, account_number, number_phone, email, int(balance))
         self._clients.append(client)
         self._save_clients()
@@ -60,10 +77,9 @@ class Clients:
         self._clients.remove(client)
 
     
-    def update(self, client, name, identification, account_number, number_phone, email):
+    def update(self, client, name, identification, number_phone, email):
         client.name = name
         client.identification = identification
-        client.account_number = account_number
         client.number_phone = number_phone
         client.email = email
     

@@ -89,11 +89,10 @@ def run():
                 try:
                     print('Cliente a atender >> Nombre del futuro cliente: {} - Identificado con C.C N° {}'.format(account_opening_queue[0]['name'], account_opening_queue[0]['identification']))
 
-                    account_number = _get_input_data('numero de cuenta: ')
                     number_phone = _get_input_data('numero de telefono del cliente: ')
                     email = _get_input_data('email del cliente: ')
 
-                    clients.add(account_opening_queue[0]['name'], account_opening_queue[0]['identification'], account_number, number_phone, email)
+                    clients.add(account_opening_queue[0]['name'], account_opening_queue[0]['identification'], number_phone, email)
                     account_opening_queue.popleft()
                 except IndexError:
                     print('La fila de Apertura de clientes no tiene clientes')
